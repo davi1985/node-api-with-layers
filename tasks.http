@@ -1,0 +1,40 @@
+### Get all Tasks
+GET http://localhost:3001/tasks
+
+### Save task sending just title
+POST http://localhost:3001/tasks
+Content-type: application/json
+
+{
+  "title": "Make coffeeeeee"
+}
+
+### Save task sending title and done
+POST http://localhost:3001/tasks
+Content-type: application/json
+
+{
+  "title": "Stude Java/Spring",
+  "done": "true"
+}
+
+### Update task with title and done
+PUT http://localhost:3001/tasks/69
+Content-type: application/json
+
+{
+  "title": "Update title",
+  "done": "false"
+}
+
+### Update task
+PUT http://localhost:3001/tasks/6
+Content-type: application/json
+
+{
+  "title": "Study node"
+}
+
+### Delete task by id
+DELETE  http://localhost:3001/tasks/6
+Content-type: application/json

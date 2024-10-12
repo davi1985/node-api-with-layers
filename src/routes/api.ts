@@ -1,12 +1,19 @@
 import { Router } from 'express'
 
-import * as ApiController from '../controllers/apiController'
+import { TaskController } from '../controllers/task.controller'
+import { TaskRepository } from '../repositories/TaskRepository'
+import { TaskService } from '../services/task.service'
 
 const router = Router()
 
-router.post('/register', ApiController.register)
-router.post('/login', ApiController.login)
+const taskRepository = new TaskRepository()
+const taskService = new TaskService(taskRepository)
+const taskController = new TaskController(taskService)
+const self = taskController
 
-router.get('/list', ApiController.list)
+router.get('/tasks', taskController.all.bind(self))
+router.post('/tasks', taskController.add.bind(self))
+router.put('/tasks/:id', taskController.update.bind(self))
+router.delete('/tasks/:id', taskController.remove.bind(self))
 
-export default router
+export { router }
